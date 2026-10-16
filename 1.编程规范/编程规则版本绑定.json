@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "normative_version": "1.0.1",
+  "source": "1.编程规范/嵌入式编程规则手册.md",
+  "artifacts": {
+    "1.编程规范/嵌入式编程规则手册.md": {
+      "sha256": "d70ac70dc617f812bf1da177ce4168ec31fa3609ffe20863e4cac60dddf6d50a"
+    },
+    ".clang-format": {
+      "sha256": "fc483d40e546dda6c49403a64312ee75b5d1d1ed2fdbad5e80f246458ba29806"
+    },
+    ".editorconfig": {
+      "sha256": "dedb2da85944086c3bb86f22897764cddacb367f5e8837e98b87e876d72fca54"
+    }
+  },
+  "clang_format_version": "21.1.0",
+  "editorconfig_core_version": "0.17.1",
+  "releases": [
+    {
+      "version": "1.0.0",
+      "date": "2026-09-18",
+      "kind": "initial",
+      "change": "初版定稿：十九章206条规则；建立工具配置投影、两份关联配置及版本绑定机制",
+      "affected_rules": [
+        "ALL"
+      ],
+      "profile_reviewed_by": "AI：本任务正文与工具基线审阅及9项配置绑定验证",
+      "artifacts": {
+        "嵌入式编程规则.md": {
+          "sha256": "0cbdd6bcfe07721285146ffb4fa85b97738d8632c98db83168680a73c8cea0ab"
+        },
+        ".clang-format": {
+          "sha256": "fcde8433027f17b761fe56fcffcec150c3801dcaaf379c0a4fb2b0522d833652"
+        },
+        ".editorconfig": {
+          "sha256": "6228aa861416ac26ce0063a688442d52d6d8188094ca472a46086677b17a5caa"
+        }
+      }
+    },
+    {
+      "version": "1.0.1",
+      "date": "2026-10-16",
+      "kind": "patch",
+      "change": "建立独立规范仓库，重命名正式手册，调整配置、工具和引用路径；明确参数化模板检查边界，不改变规则语义",
+      "affected_rules": [
+        "ALL"
+      ],
+      "profile_reviewed_by": "Nan.Wang批准结构调整；AI核对工具配置JSON语义未改变",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "d70ac70dc617f812bf1da177ce4168ec31fa3609ffe20863e4cac60dddf6d50a"
+        },
+        ".clang-format": {
+          "sha256": "fc483d40e546dda6c49403a64312ee75b5d1d1ed2fdbad5e80f246458ba29806"
+        },
+        ".editorconfig": {
+          "sha256": "dedb2da85944086c3bb86f22897764cddacb367f5e8837e98b87e876d72fca54"
+        }
+      }
+    }
+  ]
+}
