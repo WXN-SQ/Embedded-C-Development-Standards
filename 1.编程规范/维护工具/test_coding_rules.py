@@ -87,16 +87,17 @@ class BundleTests(unittest.TestCase):
         self.assertRegex(actual, r"if \(value\)\n        return;")
         self.assertEqual(self.formatted(actual), actual)
 
-    def test_complete_chapter18_files_are_stable(self):
-        section = self.text.split("## 18 综合模块封装示例", 1)[1].split("## 19 附录与版本管理", 1)[0]
-        blocks = re.findall(r"```c\n(.*?)\n```", section, re.S)
-        self.assertEqual(len(blocks), 5)
-        # 18.6 prelude, then 18.4 lifecycle, then 18.5 update implementation.
-        implementation = "\n\n".join([blocks[3], blocks[1], blocks[2]]) + "\n"
-        for filename, code in [("motangcomp.h", blocks[0] + "\n"),
-                               ("motangcomp.c", implementation),
-                               ("test_motangcomp.c", blocks[4] + "\n")]:
+    def test_edi_complete_example_files_are_stable(self):
+        section = self.text.split("## 18 规则组合应用与示例入口", 1)[1].split(
+            "## 19 附录与版本管理", 1
+        )[0]
+        self.assertNotIn("```c", section)
+        example_dir = ROOT / "2.开发指导/完整示例"
+        for filename in ["example_module.h", "example_module.c"]:
             with self.subTest(filename=filename):
+                path = example_dir / filename
+                self.assertIn(path.name, section)
+                code = path.read_text(encoding="utf-8")
                 actual = self.formatted(code, filename)
                 self.assertEqual(actual, code)
                 self.assertEqual(rules.source_errors(filename, actual.encode()), [])
