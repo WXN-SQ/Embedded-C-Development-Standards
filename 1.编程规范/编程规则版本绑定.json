@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "normative_version": "1.0.1",
+  "normative_version": "1.0.2",
   "source": "1.编程规范/嵌入式编程规则手册.md",
   "artifacts": {
     "1.编程规范/嵌入式编程规则手册.md": {
-      "sha256": "d70ac70dc617f812bf1da177ce4168ec31fa3609ffe20863e4cac60dddf6d50a"
+      "sha256": "1a5850836ecc30497f63ccaea6e0992185a9768df3542f9732bd3bb21dfb6167"
     },
     ".clang-format": {
-      "sha256": "fc483d40e546dda6c49403a64312ee75b5d1d1ed2fdbad5e80f246458ba29806"
+      "sha256": "349d19b2e7432dbe87c2bedd6122dc107adee1857ce9221cdfb1e76076a89e58"
     },
     ".editorconfig": {
-      "sha256": "dedb2da85944086c3bb86f22897764cddacb367f5e8837e98b87e876d72fca54"
+      "sha256": "0b6e8a301f2e4cce86c231357f3b3031a6568534788c3fb0e0d0dc5365ec7e62"
     }
   },
   "clang_format_version": "21.1.0",
@@ -55,6 +55,27 @@
         },
         ".editorconfig": {
           "sha256": "dedb2da85944086c3bb86f22897764cddacb367f5e8837e98b87e876d72fca54"
+        }
+      }
+    },
+    {
+      "version": "1.0.2",
+      "date": "2026-10-19",
+      "kind": "patch",
+      "change": "收敛EPR与EDI职责边界：第18章改为规则组合及EDI模板与示例入口，移除重复完整代码；不改变206条规则语义",
+      "affected_rules": [
+        "ALL"
+      ],
+      "profile_reviewed_by": "Nan.Wang批准职责收敛；AI核对工具配置JSON未改变",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "1a5850836ecc30497f63ccaea6e0992185a9768df3542f9732bd3bb21dfb6167"
+        },
+        ".clang-format": {
+          "sha256": "349d19b2e7432dbe87c2bedd6122dc107adee1857ce9221cdfb1e76076a89e58"
+        },
+        ".editorconfig": {
+          "sha256": "0b6e8a301f2e4cce86c231357f3b3031a6568534788c3fb0e0d0dc5365ec7e62"
         }
       }
     }
