@@ -1,0 +1,25 @@
+工具配置与版本绑定验证记录
+正式版本：1.0.1
+验证日期：2026-10-16
+执行目录：独立规范仓库根目录
+clang-format：21.1.0；EditorConfig Core：0.17.1
+说明：以下为仓库结构迁移后的实际执行结果；格式检查不等于C编译或目标验证。
+
+COMMAND: python "1.编程规范/维护工具/coding_rules.py" check
+EXIT: 0
+版本、生成内容及SHA-256绑定一致：1.0.1
+
+COMMAND: python "1.编程规范/维护工具/coding_rules.py" format-check --clang-format <clang-format-21.1.0>
+EXIT: 0
+格式与补充字节检查完成：2个可解析.c/.h文件；2个参数化模板仅执行字节检查；语义规则未由此验证
+
+COMMAND: python "1.编程规范/维护工具/test_coding_rules.py"
+EXIT: 0
+RESULT: 9 tests passed
+
+补充核对：
+- EPR共206个稳定规则编号，无重复；
+- EDI共100个稳定要求编号，无重复；
+- EDI引用的EPR编号均存在；
+- EDI目录111个锚点均可解析；
+- 版本绑定JSON、正式手册、.clang-format和.editorconfig的版本与SHA-256一致。

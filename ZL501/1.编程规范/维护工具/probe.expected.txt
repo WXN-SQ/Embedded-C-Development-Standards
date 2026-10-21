@@ -1,0 +1,65 @@
+#include "probe.h"
+
+#include <stdint.h>
+#include <string.h>
+
+#define SRV_CLEAR_PAIR(first, second) \
+    do \
+    { \
+        (first) = 0U; \
+        (second) = 0U; \
+    } \
+    while (0)
+
+typedef struct SRV_Obj
+{
+    int *ptr;
+    unsigned int count;
+} SRV_Obj;
+
+typedef enum SRV_State
+{
+    SRV_STATE_EMPTY = 0,
+    SRV_STATE_READY
+} SRV_State;
+
+typedef union SRV_Value
+{
+    int integer;
+    double real;
+} SRV_Value;
+
+int SRV_probe(int *ptr, unsigned int first, unsigned int second)
+{
+    if (first > second)
+    {
+        return (int) first;
+    }
+    else
+    {
+        *ptr = 0;
+    }
+    do
+    {
+        first--;
+    }
+    while (first > 0U);
+    switch (second)
+    {
+    case 0:
+    {
+        *ptr = 1;
+        break;
+    }
+    default:
+    {
+        *ptr = 2;
+        break;
+    }
+    }
+    return *ptr;
+}
+
+void SRV_empty(void)
+{
+}

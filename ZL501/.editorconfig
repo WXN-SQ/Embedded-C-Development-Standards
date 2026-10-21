@@ -1,0 +1,25 @@
+# Generated from the embedded coding rules; edit the document's tool profile.
+# Normative-Version: 2.0.0
+# Normative-Source: 1.编程规范/嵌入式编程规则手册.md
+# Normative-SHA256: acc0fbc1ebff761620894f0cced522e95a954ac983b780cc1b802e3b26f2ad00
+# Binding-Manifest: 1.编程规范/编程规则版本绑定.json
+# This profile intentionally has no wildcard section for other file types.
+root = true
+
+[*.{c,h}]
+indent_style = space
+indent_size = 4
+tab_width = 4
+charset = utf-8
+end_of_line = lf
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[.tools/**.{c,h}]
+indent_style = unset
+indent_size = unset
+tab_width = unset
+charset = unset
+end_of_line = unset
+trim_trailing_whitespace = unset
+insert_final_newline = unset
