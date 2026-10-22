@@ -131,6 +131,56 @@ class BundleTests(unittest.TestCase):
             self.assertEqual(editorconfig.get_properties(str(editor_root / filename)),
                              {key: "unset" for key in expected})
 
+    def test_pib_markers_and_registry(self):
+        source = self.scratch / "motion.c"
+        registry = self.scratch / "motion.md"
+        source.write_text(
+            "/* PIB: PIB-MOTION-001\n"
+            " * Related modules: COMM, STATE\n"
+            " * Content: Integrate the confirmed state interfaces.\n"
+            " */\n",
+            encoding="utf-8",
+        )
+        registry.write_text(
+            "| PIB-MOTION-001 | motion.c | MOTION | COMM, STATE | Integrate state | "
+            "Unavailable | Return not ready | Interfaces frozen | Owner | Open |\n",
+            encoding="utf-8",
+        )
+        self.assertEqual(rules.pib_errors([source], [registry]), [])
+        registry.write_text(
+            "| PIB-MOTION-001 | motion.c | MOTION | COMM, STATE | Integrate state | "
+            "Unavailable | Return not ready | Interfaces frozen | Owner | Closed |\n",
+            encoding="utf-8",
+        )
+        self.assertTrue(any("Closed" in item for item in rules.pib_errors([source], [registry])))
+
+    def test_pib_range_pair_and_required_fields(self):
+        source = self.scratch / "range.c"
+        registry = self.scratch / "range.md"
+        source.write_text("/* PIB-BEGIN: PIB-MOTION-002 */\n", encoding="utf-8")
+        registry.write_text("| PIB-MOTION-002 | range.c | MOTION | COMM | Work | X | X | X | X | Open |\n",
+                            encoding="utf-8")
+        errors = rules.pib_errors([source], [registry])
+        self.assertTrue(any("PIB-END" in item for item in errors))
+        self.assertTrue(any("Related modules" in item for item in errors))
+
+    def test_pib_duplicate_registry_entry_fails(self):
+        source = self.scratch / "duplicate.c"
+        first = self.scratch / "first.md"
+        second = self.scratch / "second.md"
+        source.write_text(
+            "/* PIB: PIB-MOTION-003\n"
+            " * Related modules: COMM\n"
+            " * Content: Integrate the interface.\n"
+            " */\n",
+            encoding="utf-8",
+        )
+        row = "| PIB-MOTION-003 | duplicate.c | MOTION | COMM | Work | X | X | X | X | Open |\n"
+        first.write_text(row, encoding="utf-8")
+        second.write_text(row, encoding="utf-8")
+        self.assertTrue(any("registry entry is not unique" in item
+                            for item in rules.pib_errors([source], [first, second])))
+
     def cloned_release(self, label):
         clone = self.scratch / label
         (clone / rules.TOOL_DIR).mkdir(parents=True)

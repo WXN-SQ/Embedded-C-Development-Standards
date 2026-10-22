@@ -256,6 +256,85 @@ def source_errors(path, raw):
     return [f"{path}: {error}" for error in errors]
 
 
+PIB_ID = r"PIB-[A-Z][A-Z0-9_]*-\d{3}"
+
+
+def pib_errors(source_files, registry_files):
+    """Check explicit PIB markers; do not infer PIBs from empty code."""
+    errors = []
+    source_ids = {}
+    begin_ids = {}
+    end_ids = {}
+    for path in source_files:
+        text = path.read_text(encoding="utf-8")
+        relative = path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path.as_posix()
+        for kind, identifier in re.findall(r"PIB(?:-(BEGIN|END))?:\s*(" + PIB_ID + r")", text):
+            if kind == "BEGIN":
+                begin_ids.setdefault(identifier, []).append(relative)
+            elif kind == "END":
+                end_ids.setdefault(identifier, []).append(relative)
+            else:
+                source_ids.setdefault(identifier, []).append(relative)
+        for match in re.finditer(r"PIB(?:-BEGIN)?:\s*(" + PIB_ID + r")(?P<body>.*?)(?:\*/)", text, re.S):
+            body = match.group("body")
+            identifier = match.group(1)
+            for field in ["Related modules:", "Content:"]:
+                if field not in body:
+                    errors.append(f"{relative}: {identifier}: missing {field}")
+    for identifier, locations in source_ids.items():
+        if len(locations) != 1:
+            errors.append(f"{identifier}: single-point marker is not unique: {locations}")
+    all_range_ids = set(begin_ids) | set(end_ids)
+    for identifier in sorted(all_range_ids):
+        if len(begin_ids.get(identifier, [])) != 1 or len(end_ids.get(identifier, [])) != 1:
+            errors.append(f"{identifier}: require one PIB-BEGIN and one PIB-END")
+        elif begin_ids[identifier][0] != end_ids[identifier][0]:
+            errors.append(f"{identifier}: PIB-BEGIN and PIB-END must be in the same file")
+    all_source_ids = set(source_ids) | all_range_ids
+    for identifier in sorted(set(source_ids) & all_range_ids):
+        errors.append(f"{identifier}: cannot use both single-point and range markers")
+    registry_locations = {}
+    closed_ids = set()
+    for path in registry_files:
+        text = path.read_text(encoding="utf-8")
+        for line in text.splitlines():
+            found = re.search(r"\|\s*(" + PIB_ID + r")\s*\|", line)
+            if found:
+                registry_locations.setdefault(found.group(1), []).append(path.as_posix())
+                if re.search(r"\|\s*Closed\s*\|?\s*$", line):
+                    closed_ids.add(found.group(1))
+    for identifier, locations in registry_locations.items():
+        if len(locations) != 1:
+            errors.append(f"{identifier}: registry entry is not unique: {locations}")
+    registry_ids = set(registry_locations)
+    for identifier in sorted(all_source_ids - registry_ids):
+        errors.append(f"{identifier}: source marker has no module registry entry")
+    for identifier in sorted(all_source_ids & closed_ids):
+        errors.append(f"{identifier}: Closed registry item remains in source")
+    return errors
+
+
+def pib_check():
+    source_files = []
+    registry_files = []
+    for path in ROOT.rglob("*"):
+        relative = path.relative_to(ROOT)
+        if not path.is_file() or any(relative.is_relative_to(Path(item)) for item in [".git", ".tools"]):
+            continue
+        if path.suffix in [".c", ".h"] and not relative.is_relative_to(PARAMETERIZED_TEMPLATE_DIR):
+            source_files.append(path)
+        elif path.suffix == ".md" and not relative.is_relative_to(PARAMETERIZED_TEMPLATE_DIR):
+            registry_files.append(path)
+    errors = pib_errors(source_files, registry_files)
+    if errors:
+        raise ValueError("\n".join(errors))
+    marker_count = sum(
+        len(re.findall(r"PIB(?:-(?:BEGIN|END))?:\s*" + PIB_ID, path.read_text(encoding="utf-8")))
+        for path in source_files
+    )
+    print(f"PIB显式标记检查完成：{marker_count}个源码标记；未推断空代码是否属于PIB")
+
+
 def format_check(args):
     _, _, profile, _ = check()
     executable = clang_tool(args.clang_format, profile)
@@ -291,6 +370,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     actions = parser.add_subparsers(dest="action", required=True)
     actions.add_parser("check", help="check version, generation output and SHA-256 binding")
+    actions.add_parser("pib-check", help="check explicit PIB markers and module registry entries")
     release = actions.add_parser("sync", help="release a new version and regenerate both configurations")
     release.add_argument("--kind", choices=["initial", "major", "minor", "patch"], required=True)
     release.add_argument("--change", required=True)
@@ -306,6 +386,8 @@ def main():
             print("版本、生成内容及SHA-256绑定一致：" + version)
         elif args.action == "sync":
             sync(args)
+        elif args.action == "pib-check":
+            pib_check()
         else:
             format_check(args)
     except (ValueError, OSError, KeyError, subprocess.CalledProcessError) as error:

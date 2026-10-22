@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "normative_version": "1.0.2",
+  "normative_version": "1.1.0",
   "source": "1.编程规范/嵌入式编程规则手册.md",
   "artifacts": {
     "1.编程规范/嵌入式编程规则手册.md": {
-      "sha256": "1a5850836ecc30497f63ccaea6e0992185a9768df3542f9732bd3bb21dfb6167"
+      "sha256": "5232adadb59554f746e91256a80b8442ee5b94902c549e695989ca85541c30da"
     },
     ".clang-format": {
-      "sha256": "349d19b2e7432dbe87c2bedd6122dc107adee1857ce9221cdfb1e76076a89e58"
+      "sha256": "11e6665eb7acfba662c876f9dbfea133d36699b02e50b56bd5c9a30d8e3653da"
     },
     ".editorconfig": {
-      "sha256": "0b6e8a301f2e4cce86c231357f3b3031a6568534788c3fb0e0d0dc5365ec7e62"
+      "sha256": "a21c6bb4671fbd4c59a1b46518a1040ac4bcbf2125520b1fb5305b25043761cf"
     }
   },
   "clang_format_version": "21.1.0",
@@ -76,6 +76,28 @@
         },
         ".editorconfig": {
           "sha256": "0b6e8a301f2e4cce86c231357f3b3031a6568534788c3fb0e0d0dc5365ec7e62"
+        }
+      }
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-10-22",
+      "kind": "minor",
+      "change": "新增PIB源码标记及检查门禁规则；不从普通空代码推定违规",
+      "affected_rules": [
+        "EPR-DOC-011",
+        "EPR-VER-015"
+      ],
+      "profile_reviewed_by": "Nan.Wang确认PIB分章方案并授权执行；AI核对格式配置基线未改变",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "5232adadb59554f746e91256a80b8442ee5b94902c549e695989ca85541c30da"
+        },
+        ".clang-format": {
+          "sha256": "11e6665eb7acfba662c876f9dbfea133d36699b02e50b56bd5c9a30d8e3653da"
+        },
+        ".editorconfig": {
+          "sha256": "a21c6bb4671fbd4c59a1b46518a1040ac4bcbf2125520b1fb5305b25043761cf"
         }
       }
     }

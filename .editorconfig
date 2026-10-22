@@ -1,7 +1,7 @@
 # Generated from the embedded coding rules; edit the document's tool profile.
-# Normative-Version: 1.0.2
+# Normative-Version: 1.1.0
 # Normative-Source: 1.编程规范/嵌入式编程规则手册.md
-# Normative-SHA256: 1a5850836ecc30497f63ccaea6e0992185a9768df3542f9732bd3bb21dfb6167
+# Normative-SHA256: 5232adadb59554f746e91256a80b8442ee5b94902c549e695989ca85541c30da
 # Binding-Manifest: 1.编程规范/编程规则版本绑定.json
 # This profile intentionally has no wildcard section for other file types.
 root = true
