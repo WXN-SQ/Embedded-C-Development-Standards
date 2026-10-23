@@ -2,7 +2,7 @@
  * @file alg_example.c
  * @brief Implements platform-independent bounded integer sample processing.
  *
- * This file is a teaching example for ZL501 EPR 2.0.0 and EDI 2.0.0.
+ * This file is a teaching example for ZL501 EPR 2.1.0 and EDI 2.1.0.
  * It is not a target-DSP validation artifact.
  */
 

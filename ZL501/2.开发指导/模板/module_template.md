@@ -4,7 +4,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 模板集版本 | 2.0.0（ZL501） |
+| 模板集版本 | 2.1.0（ZL501） |
 | EPR基线 | {{EPR_VERSION}} |
 | EDI基线 | {{EDI_VERSION}} |
 | 模块名称 | {{MODULE_NAME}} |
@@ -166,7 +166,15 @@
 | --- | --- | --- | --- | --- |
 | {{TBD_ID_OR_NONE}} | {{TBD_DESCRIPTION}} | {{TBD_IMPACT}} | {{TBD_CLOSURE_CONDITION}} | Open / Closed |
 
-## 10. 同步与人工审核记录
+## 10. 待集成代码段
+
+| 编号 | 源码位置 | 所属模块 | 相关模块 | 待集成内容 | 影响 | 临时行为 | 关闭条件 | 责任人 | 状态 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| {{PIB_ID_OR_NONE}} | {{PIB_SOURCE_LOCATION}} | {{MODULE_PREFIX}} | {{RELATED_MODULES}} | {{PIB_CONTENT}} | {{PIB_IMPACT}} | {{PIB_TEMPORARY_BEHAVIOR}} | {{PIB_CLOSURE_CONDITION}} | {{PIB_OWNER}} | Open / Ready for Integration / Closed |
+
+> 仅登记有任务、依赖、设计或人工确认依据的 PIB；无 PIB 时填 `None`，不从普通空代码推定。Closed 项保留关闭日期、源码身份和验证证据，且对应源码标记必须删除。
+
+## 11. 同步与人工审核记录
 
 | 日期 | 源码身份 | 核对范围 | AI读取范围 | 人工审核人 | 结论 | 未关闭项 |
 | --- | --- | --- | --- | --- | --- | --- |

@@ -2,7 +2,7 @@
  * @file {{FILE_NAME}}
  * @brief {{MODULE_BRIEF}}
  *
- * Template set version: 2.0.0 (ZL501).
+ * Template set version: 2.1.0 (ZL501).
  * EPR baseline: {{EPR_VERSION}}.
  * EDI baseline: {{EDI_VERSION}}.
  *

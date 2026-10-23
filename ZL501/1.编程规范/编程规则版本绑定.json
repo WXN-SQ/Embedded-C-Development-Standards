@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "normative_version": "2.0.0",
+  "normative_version": "2.1.0",
   "source": "1.编程规范/嵌入式编程规则手册.md",
   "artifacts": {
     "1.编程规范/嵌入式编程规则手册.md": {
-      "sha256": "acc0fbc1ebff761620894f0cced522e95a954ac983b780cc1b802e3b26f2ad00"
+      "sha256": "089ecea68f3b76ff5430efd5aa16ce00c900d6b63990a7b156b247f6a0b04ad9"
     },
     ".clang-format": {
-      "sha256": "2a2d16450b1823292bc02427efc386160f1f1a7b9d91d2f7857203219ecfd847"
+      "sha256": "ae7974363d22e48abead3da7b6b06ffcca3ec97e5963d092eeaef3b25452dc9f"
     },
     ".editorconfig": {
-      "sha256": "11a02534cfd958ceed7971c27fb7def571d039cbadc690ca8ea1a5647a5e27f8"
+      "sha256": "6579851208cfe845177a192f7d3d66991c7c1686e31a91218bdd873769833da6"
     }
   },
   "clang_format_version": "21.1.0",
@@ -97,6 +97,28 @@
         },
         ".editorconfig": {
           "sha256": "11a02534cfd958ceed7971c27fb7def571d039cbadc690ca8ea1a5647a5e27f8"
+        }
+      }
+    },
+    {
+      "version": "2.1.0",
+      "date": "2026-10-23",
+      "kind": "minor",
+      "change": "ZL501适配Nan.Wang分支PIB标记及闭环门禁；保留既有规则编号语义",
+      "affected_rules": [
+        "EPR-DOC-012",
+        "EPR-VER-015"
+      ],
+      "profile_reviewed_by": "Nan.Wang批准ZL501 2.1.0适配稿；AI核对新增PIB正文与工具配置映射，现有格式配置基线未改变",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "089ecea68f3b76ff5430efd5aa16ce00c900d6b63990a7b156b247f6a0b04ad9"
+        },
+        ".clang-format": {
+          "sha256": "ae7974363d22e48abead3da7b6b06ffcca3ec97e5963d092eeaef3b25452dc9f"
+        },
+        ".editorconfig": {
+          "sha256": "6579851208cfe845177a192f7d3d66991c7c1686e31a91218bdd873769833da6"
         }
       }
     }
