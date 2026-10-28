@@ -2,7 +2,16 @@
  * @file example_module.c
  * @brief Implements platform-independent bounded integer sample processing.
  *
- * This file is a teaching example for EPR 1.0.1 and EDI 1.0.1.
+ * This file is a teaching example for the stated EPR and EDI baselines.
+ * Description: Demonstrates bounded sample processing without target validation.
+ * Author: Nan.Wang
+ * Created: 2026-10-16
+ * Last editor: Nan.Wang
+ * Last edited: 2026-10-16T21:10:43+08:00
+ * EPR baseline: 2.0.1.
+ * EDI baseline: 2.0.0.
+ * Branch: Nan.Wang
+ * Previous commit: d98e8dc
  * It is not a target-DSP validation artifact.
  */
 
@@ -11,7 +20,8 @@
 #include "example_module.h"
 
 /**
- * @brief This is an Atomic Function. Adds a validated array of signed samples.
+ * @brief Adds a validated array of signed samples.
+ * @category Atomic Function
  * @param[in] samples Points to a readable array containing count valid elements.
  * @param[in] count Number of elements to add, from 1 to EXAMPLE_MAX_SAMPLE_COUNT.
  * @return Sum of all input samples represented as int32_t.
@@ -31,7 +41,8 @@ static int32_t EXAMPLE_sum_samples(const int16_t *samples, size_t count)
 }
 
 /**
- * @brief This is an Atomic Function. Divides a validated sum by a positive sample count.
+ * @brief Divides a validated sum by a positive sample count.
+ * @category Atomic Function
  * @param[in] sum Signed sum to divide.
  * @param[in] divisor Positive divisor representable as int32_t.
  * @return Integer quotient truncated toward zero and representable as int16_t.
@@ -43,7 +54,8 @@ static int16_t EXAMPLE_divide_sum(int32_t sum, int32_t divisor)
 }
 
 /**
- * @brief This is an Atomic Function. Limits a signed value to an inclusive range.
+ * @brief Limits a signed value to an inclusive range.
+ * @category Atomic Function
  * @param[in] value Value to limit.
  * @param[in] lower_limit Inclusive lower bound.
  * @param[in] upper_limit Inclusive upper bound, not less than lower_limit.
@@ -66,7 +78,8 @@ static int16_t EXAMPLE_limit_value(int16_t value, int16_t lower_limit, int16_t u
 }
 
 /**
- * @brief This is a Composite Function. Computes an average using two Atomic Functions.
+ * @brief Computes an average using two Atomic Functions.
+ * @category Composite Function
  * @param[in] samples Points to a validated readable sample array.
  * @param[in] sample_count Valid sample count, from 1 to EXAMPLE_MAX_SAMPLE_COUNT.
  * @return Integer average of the input samples, truncated toward zero.

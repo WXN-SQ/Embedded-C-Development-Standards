@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "normative_version": "1.1.0",
+  "normative_version": "2.0.1",
   "source": "1.编程规范/嵌入式编程规则手册.md",
   "artifacts": {
     "1.编程规范/嵌入式编程规则手册.md": {
-      "sha256": "5232adadb59554f746e91256a80b8442ee5b94902c549e695989ca85541c30da"
+      "sha256": "c3f07f021a0ddb654f4efd96162798aa92d638d714f7b398f61e1f4047e545cf"
     },
     ".clang-format": {
-      "sha256": "11e6665eb7acfba662c876f9dbfea133d36699b02e50b56bd5c9a30d8e3653da"
+      "sha256": "b25fe153818e3af787bf1ce1f5cbdc5eb0c63b182a372358e715ad773fbcfd76"
     },
     ".editorconfig": {
-      "sha256": "a21c6bb4671fbd4c59a1b46518a1040ac4bcbf2125520b1fb5305b25043761cf"
+      "sha256": "6415f14f68c065ac61807cd427a6a3a90a5a5a6bb5e078e701e6eade7787576e"
     }
   },
   "clang_format_version": "21.1.0",
@@ -98,6 +98,50 @@
         },
         ".editorconfig": {
           "sha256": "a21c6bb4671fbd4c59a1b46518a1040ac4bcbf2125520b1fb5305b25043761cf"
+        }
+      }
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-10-28",
+      "kind": "major",
+      "change": "文件名派生保护宏、项目内文件名唯一及源码文件头和注释要求",
+      "affected_rules": [
+        "EPR-MOD-004",
+        "EPR-NAM-010",
+        "EPR-DOC-001"
+      ],
+      "profile_reviewed_by": "AI核对工具配置基线未改变；Nan.Wang授权本次规则修改",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "065feb576bf0c90850be0200d28d11fd5bc7d9887a2ccbf4e6abfdeafa3b8a2a"
+        },
+        ".clang-format": {
+          "sha256": "642e740c7b130de76ab28e719f5b27df9ff47d22563770e2fc45da64275449ba"
+        },
+        ".editorconfig": {
+          "sha256": "51f9a513e0eccb80a8801a490aa61a4f4d8174642b7a57893e955908cb9db112"
+        }
+      }
+    },
+    {
+      "version": "2.0.1",
+      "date": "2026-10-28",
+      "kind": "patch",
+      "change": "补全文件头示例和检查判据",
+      "affected_rules": [
+        "EPR-DOC-001"
+      ],
+      "profile_reviewed_by": "AI核对工具配置基线未改变；Nan.Wang授权本次规则修改",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "c3f07f021a0ddb654f4efd96162798aa92d638d714f7b398f61e1f4047e545cf"
+        },
+        ".clang-format": {
+          "sha256": "b25fe153818e3af787bf1ce1f5cbdc5eb0c63b182a372358e715ad773fbcfd76"
+        },
+        ".editorconfig": {
+          "sha256": "6415f14f68c065ac61807cd427a6a3a90a5a5a6bb5e078e701e6eade7787576e"
         }
       }
     }

@@ -2,14 +2,23 @@
  * @file example_module.h
  * @brief Declares a platform-independent bounded sample processing interface.
  *
- * This file is a teaching example for EPR 1.0.1 and EDI 1.0.1.
+ * This file is a teaching example for the stated EPR and EDI baselines.
+ * Description: Declares the bounded sample processing contract.
+ * Author: Nan.Wang
+ * Created: 2026-10-16
+ * Last editor: Nan.Wang
+ * Last edited: 2026-10-16T21:10:43+08:00
+ * EPR baseline: 2.0.1.
+ * EDI baseline: 2.0.0.
+ * Branch: Nan.Wang
+ * Previous commit: d98e8dc
  * It is not a target-DSP validation artifact.
  */
 
 /* Copyright and license strategy: TBD; this teaching example is not a release file. */
 
-#ifndef EDI_COMPLETE_EXAMPLE_EXAMPLE_MODULE_H
-#define EDI_COMPLETE_EXAMPLE_EXAMPLE_MODULE_H
+#ifndef EXAMPLE_MODULE_H
+#define EXAMPLE_MODULE_H
 
 #include <stddef.h>
 #include <stdint.h>
@@ -27,7 +36,8 @@ typedef enum
 } EXAMPLE_Status;
 
 /**
- * @brief This is a Service Function. Computes and limits the integer average of input samples.
+ * @brief Computes and limits the integer average of input samples.
+ * @category Service Function
  * @param[in] samples Points to a readable array containing sample_count signed samples.
  * @param[in] sample_count Number of valid array elements, from 1 to EXAMPLE_MAX_SAMPLE_COUNT.
  * @param[in] lower_limit Lowest value that may be written to output_value.
@@ -41,9 +51,11 @@ typedef enum
  * @pre No module initialization is required.
  * @post On success, output_value is between lower_limit and upper_limit, inclusive.
  * @post On failure, output_value and the input sample array are unchanged.
- * @note 执行上下文：Synchronous platform-independent code; target ISR suitability is unverified.
- * @note 重入与同步：No shared state is used; callers protect concurrently shared objects.
- * @note 阻塞与时间：No wait or I/O is used; target execution time has not been measured.
+ * @note Execution context: Synchronous platform-independent code;
+ *       target ISR suitability is unverified.
+ * @note Reentrancy and synchronization: No shared state is used;
+ *       callers protect concurrently shared objects.
+ * @note Blocking and timing: No wait or I/O is used; target execution time has not been measured.
  * @warning This teaching interface has not been validated with the project TI toolchain or DSP.
  * @author Nan.Wang
  */
@@ -53,4 +65,4 @@ EXAMPLE_Status EXAMPLE_process_samples(const int16_t *samples,
     int16_t upper_limit,
     int16_t *output_value);
 
-#endif /* EDI_COMPLETE_EXAMPLE_EXAMPLE_MODULE_H */
+#endif /* EXAMPLE_MODULE_H */

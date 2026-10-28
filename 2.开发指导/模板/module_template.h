@@ -2,9 +2,16 @@
  * @file {{FILE_NAME}}
  * @brief {{MODULE_BRIEF}}
  *
- * Template set version: 1.0.1.
+ * Template set version: 2.0.0.
  * EPR baseline: {{EPR_VERSION}}.
  * EDI baseline: {{EDI_VERSION}}.
+ * Description: {{FILE_DESCRIPTION}}
+ * Author: {{AUTHOR}}
+ * Created: {{CREATED_AT}}
+ * Last editor: {{LAST_EDITOR}}
+ * Last edited: {{LAST_EDITED_AT}}
+ * Branch: {{BRANCH}}
+ * Previous commit: {{PREVIOUS_COMMIT}}
  *
  * Replace every {{...}} placeholder before delivery. Remove optional sections
  * and fields that do not apply. Do not invent target, timing, safety, license,
@@ -34,7 +41,8 @@
 /* Public Function Declarations */
 
 /**
- * @brief This is a Service Function. {{SERVICE_FUNCTION_BRIEF}}
+ * @brief {{SERVICE_FUNCTION_BRIEF}}
+ * @category Service Function
  * @param[in] {{INPUT_PARAMETER}} {{INPUT_PARAMETER_DESCRIPTION}}
  * @param[out] {{OUTPUT_PARAMETER}} {{OUTPUT_PARAMETER_DESCRIPTION}}
  * @return {{RETURN_DESCRIPTION}}
@@ -42,9 +50,9 @@
  * @retval {{FAILURE_VALUE}} {{FAILURE_DESCRIPTION}}
  * @pre {{PRECONDITION}}
  * @post {{POSTCONDITION}}
- * @note 执行上下文：{{EXECUTION_CONTEXT}}
- * @note 重入与同步：{{REENTRANCY_AND_SYNCHRONIZATION}}
- * @note 阻塞与时间：{{BLOCKING_AND_TIMING}}
+ * @note Execution context: {{EXECUTION_CONTEXT}}
+ * @note Reentrancy and synchronization: {{REENTRANCY_AND_SYNCHRONIZATION}}
+ * @note Blocking and timing: {{BLOCKING_AND_TIMING}}
  * @warning {{WARNING_DESCRIPTION}}
  * @author {{AUTHOR}}
  */

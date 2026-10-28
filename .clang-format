@@ -1,7 +1,7 @@
 # Generated from the embedded coding rules; edit the document's tool profile.
-# Normative-Version: 1.1.0
+# Normative-Version: 2.0.1
 # Normative-Source: 1.编程规范/嵌入式编程规则手册.md
-# Normative-SHA256: 5232adadb59554f746e91256a80b8442ee5b94902c549e695989ca85541c30da
+# Normative-SHA256: c3f07f021a0ddb654f4efd96162798aa92d638d714f7b398f61e1f4047e545cf
 # Binding-Manifest: 1.编程规范/编程规则版本绑定.json
 # clang-format baseline: 21.1.0
 # Allman blocks are expressed as Custom to also wrap do/while.
