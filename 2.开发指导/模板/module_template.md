@@ -4,11 +4,13 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 模板集版本 | 1.0.2 |
+| 模板集版本 | 3.0.2（ZL501） |
 | EPR基线 | {{EPR_VERSION}} |
 | EDI基线 | {{EDI_VERSION}} |
 | 模块名称 | {{MODULE_NAME}} |
 | 模块前缀 | {{MODULE_PREFIX}} |
+| 文件名词干 | {{FILE_STEM}}（例如 `alg_test`；函数名再加一个下划线及操作名） |
+| 函数创建日期 | {{CREATED_DATE}}（YYYY-MM-DD；以真实记录核验） |
 | 默认作者 | {{AUTHOR}} |
 | 源码身份 | {{SOURCE_IDENTITY}} |
 | C语言基线 | {{C_STANDARD}} |
@@ -20,6 +22,10 @@
 > 实例化说明：替换全部 `{{...}}` 占位符；不适用内容明确写
 > `None`；未知事实转为具有影响说明的 `TBD`。不得预填虚假的
 > `Approved`、测试通过或目标验证结论。
+
+`{{MODULE_NAME}}` 与 `{{FILE_STEM}}` 均应取项目已登记的文件名词干，例如 `alg_test`；函数操作名不得再含下划线，保证函数名恰有两个下划线。指针名使用 `pXxx`，全局指针使用已裁决的 `pGXxx`。函数头的创建人和日期须从真实记录核验。
+
+头文件保护宏仅由包含扩展名的完整文件名派生，实例化前须核对项目内文件名唯一。C/H 文件头的描述、作者、创建及最近编辑事实、EPR/EDI 基线、分支和上一已完成提交须逐项核实；函数 `@brief` 仅写职责，`@category` 使用固定分类值。模板中的这些内容均为待填写或待审核项，不预设合规结论。
 
 ## 2. 模块职责与边界
 
@@ -43,9 +49,9 @@
 
 | 函数 | 分类 | 可见性 | 定义位置 | 主要职责 | 直接项目调用 | 审核状态 | 审核记录 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `{{MODULE_PREFIX}}_{{SERVICE_FUNCTION_NAME}}` | Service | Public / `static` | {{SERVICE_DEFINITION_LOCATION}} | {{SERVICE_FUNCTION_BRIEF}} | {{SERVICE_PROJECT_CALLS}} | Pending Review | {{SERVICE_REVIEW_RECORD}} |
-| `{{MODULE_PREFIX}}_{{COMPOSITE_FUNCTION_NAME}}` | Composite | `static` | {{COMPOSITE_DEFINITION_LOCATION}} | {{COMPOSITE_FUNCTION_BRIEF}} | {{COMPOSITE_PROJECT_CALLS}} | Pending Review | {{COMPOSITE_REVIEW_RECORD}} |
-| `{{MODULE_PREFIX}}_{{ATOMIC_FUNCTION_NAME}}` | Atomic | `static` | {{ATOMIC_DEFINITION_LOCATION}} | {{ATOMIC_FUNCTION_BRIEF}} | None | Pending Review | {{ATOMIC_REVIEW_RECORD}} |
+| `{{FILE_STEM}}_{{SERVICE_FUNCTION_NAME}}` | Service | Public / `static` | {{SERVICE_DEFINITION_LOCATION}} | {{SERVICE_FUNCTION_BRIEF}} | {{SERVICE_PROJECT_CALLS}} | Pending Review | {{SERVICE_REVIEW_RECORD}} |
+| `{{FILE_STEM}}_{{COMPOSITE_FUNCTION_NAME}}` | Composite | `static` | {{COMPOSITE_DEFINITION_LOCATION}} | {{COMPOSITE_FUNCTION_BRIEF}} | {{COMPOSITE_PROJECT_CALLS}} | Pending Review | {{COMPOSITE_REVIEW_RECORD}} |
+| `{{FILE_STEM}}_{{ATOMIC_FUNCTION_NAME}}` | Atomic | `static` | {{ATOMIC_DEFINITION_LOCATION}} | {{ATOMIC_FUNCTION_BRIEF}} | None | Pending Review | {{ATOMIC_REVIEW_RECORD}} |
 
 ## 5. 全局变量与文件作用域对象
 
@@ -55,7 +61,7 @@
 
 ## 6. 函数详细资料
 
-### 6.1 `{{MODULE_PREFIX}}_{{SERVICE_FUNCTION_NAME}}`
+### 6.1 `{{FILE_STEM}}_{{SERVICE_FUNCTION_NAME}}`
 
 #### 基本信息
 
@@ -80,7 +86,7 @@
 | --- | --- | --- | --- | --- | --- |
 | {{SERVICE_LOCAL_NAME_OR_NONE}} | {{TYPE}} | {{SCOPE}} | {{INITIAL_VALUE_OR_SOURCE}} | {{MEANING_AND_UNIT}} | {{PURPOSE}} |
 
-### 6.2 `{{MODULE_PREFIX}}_{{COMPOSITE_FUNCTION_NAME}}`
+### 6.2 `{{FILE_STEM}}_{{COMPOSITE_FUNCTION_NAME}}`
 
 #### 基本信息
 
@@ -105,7 +111,7 @@
 | --- | --- | --- | --- | --- | --- |
 | {{COMPOSITE_LOCAL_NAME_OR_NONE}} | {{TYPE}} | {{SCOPE}} | {{INITIAL_VALUE_OR_SOURCE}} | {{MEANING_AND_UNIT}} | {{PURPOSE}} |
 
-### 6.3 `{{MODULE_PREFIX}}_{{ATOMIC_FUNCTION_NAME}}`
+### 6.3 `{{FILE_STEM}}_{{ATOMIC_FUNCTION_NAME}}`
 
 #### 基本信息
 
@@ -142,13 +148,35 @@
 | 初始化依赖 | {{INITIALIZATION_DEPENDENCIES}} |
 | 使用注意事项 | {{USAGE_NOTES}} |
 
-## 8. 待确认项
+## 8. ZL501 功能模块设计资料
+
+| 设计项 | 内容或权威位置 |
+| --- | --- |
+| 四层归属与 `func/control` 分区 | {{LAYER_AND_FUNCTION_PARTITION}} |
+| 主要参数结构体及获取接口 | {{PARAMETER_STRUCTURE_AND_ACCESS}} |
+| 相关结构体定义 | {{STRUCTURE_DEFINITION_LINKS}} |
+| 接口函数说明 | {{INTERFACE_FUNCTION_LINKS}} |
+| 功能设计流程 | {{FUNCTIONAL_FLOW}} |
+| 遥控遥测需求（无需求时注明不适用） | {{TELECONTROL_TELEMETRY_MAPPING_OR_NONE}} |
+| EMIF 地址及多组读写接口（无需求时注明不适用） | {{EMIF_MAPPING_OR_NONE}} |
+
+以上条目指向源码权威声明与项目需求，不复制第二份公共接口契约；实际硬件地址、时序及目标验证依证据填写。
+
+## 9. 待确认项
 
 | 编号 | 待确认内容 | 影响 | 关闭条件 | 状态 |
 | --- | --- | --- | --- | --- |
 | {{TBD_ID_OR_NONE}} | {{TBD_DESCRIPTION}} | {{TBD_IMPACT}} | {{TBD_CLOSURE_CONDITION}} | Open / Closed |
 
-## 9. 同步与人工审核记录
+## 10. 待集成代码段
+
+| 编号 | 源码位置 | 所属模块 | 相关模块 | 待集成内容 | 影响 | 临时行为 | 关闭条件 | 责任人 | 状态 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| {{PIB_ID_OR_NONE}} | {{PIB_SOURCE_LOCATION}} | {{MODULE_PREFIX}} | {{RELATED_MODULES}} | {{PIB_CONTENT}} | {{PIB_IMPACT}} | {{PIB_TEMPORARY_BEHAVIOR}} | {{PIB_CLOSURE_CONDITION}} | {{PIB_OWNER}} | Open / Ready for Integration / Closed |
+
+> 仅登记有任务、依赖、设计或人工确认依据的 PIB；无 PIB 时填 `None`，不从普通空代码推定。Closed 项保留关闭日期、源码身份和验证证据，且对应源码标记必须删除。
+
+## 11. 同步与人工审核记录
 
 | 日期 | 源码身份 | 核对范围 | AI读取范围 | 人工审核人 | 结论 | 未关闭项 |
 | --- | --- | --- | --- | --- | --- | --- |

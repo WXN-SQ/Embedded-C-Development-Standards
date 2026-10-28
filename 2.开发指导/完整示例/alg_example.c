@@ -6,11 +6,11 @@
  * Author: Codex (ZL501 adaptation of Nan.Wang example)
  * Created: 2026-10-21
  * Last editor: Codex
- * Last edited: 2026-10-28T16:17:46+08:00
- * EPR baseline: ZL501 3.0.0.
- * EDI baseline: ZL501 3.0.0.
+ * Last edited: 2026-10-28T16:35:25+08:00
+ * EPR baseline: ZL501 3.0.2.
+ * EDI baseline: ZL501 3.0.2.
  * Branch: ZL501
- * Previous commit: f78d11ec4c24450e142d2cb62083f4759e10f8b0
+ * Previous commit: e41c79c31ef50e72e2a2be48a56cfb98b249566e
  * It is not a target-DSP validation artifact.
  */
 

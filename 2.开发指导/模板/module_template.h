@@ -2,9 +2,16 @@
  * @file {{FILE_NAME}}
  * @brief {{MODULE_BRIEF}}
  *
- * Template set version: 1.0.1.
+ * Template set version: 3.0.2 (ZL501).
  * EPR baseline: {{EPR_VERSION}}.
  * EDI baseline: {{EDI_VERSION}}.
+ * Description: {{FILE_DESCRIPTION}}
+ * Author: {{AUTHOR}}
+ * Created: {{CREATED_AT}}
+ * Last editor: {{LAST_EDITOR}}
+ * Last edited: {{LAST_EDITED_AT}}
+ * Branch: {{BRANCH}}
+ * Previous commit: {{PREVIOUS_COMMIT}}
  *
  * Replace every {{...}} placeholder before delivery. Remove optional sections
  * and fields that do not apply. Do not invent target, timing, safety, license,
@@ -34,7 +41,9 @@
 /* Public Function Declarations */
 
 /**
- * @brief This is a Service Function. {{SERVICE_FUNCTION_BRIEF}}
+ * @brief {{SERVICE_FUNCTION_BRIEF}}
+ * @category Service Function
+ * @details Function: {{FILE_STEM}}_{{SERVICE_FUNCTION_NAME}}.
  * @param[in] {{INPUT_PARAMETER}} {{INPUT_PARAMETER_DESCRIPTION}}
  * @param[out] {{OUTPUT_PARAMETER}} {{OUTPUT_PARAMETER_DESCRIPTION}}
  * @return {{RETURN_DESCRIPTION}}
@@ -47,8 +56,9 @@
  * @note 阻塞与时间：{{BLOCKING_AND_TIMING}}
  * @warning {{WARNING_DESCRIPTION}}
  * @author {{AUTHOR}}
+ * @date {{CREATED_DATE}}
  */
-{{RETURN_TYPE}} {{MODULE_PREFIX}}_{{SERVICE_FUNCTION_NAME}}(
+{{RETURN_TYPE}} {{FILE_STEM}}_{{SERVICE_FUNCTION_NAME}}(
     {{INPUT_PARAMETER_TYPE}} {{INPUT_PARAMETER}},
     {{OUTPUT_PARAMETER_TYPE}} *{{OUTPUT_PARAMETER}});
 

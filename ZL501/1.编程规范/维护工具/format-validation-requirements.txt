@@ -1,2 +1,0 @@
-clang-format==21.1.0
-EditorConfig==0.17.1

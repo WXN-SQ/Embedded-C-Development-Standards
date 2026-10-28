@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "normative_version": "1.0.2",
+  "normative_version": "3.0.2",
   "source": "1.编程规范/嵌入式编程规则手册.md",
   "artifacts": {
     "1.编程规范/嵌入式编程规则手册.md": {
-      "sha256": "1a5850836ecc30497f63ccaea6e0992185a9768df3542f9732bd3bb21dfb6167"
+      "sha256": "bf2d00e893b04747945621aa600fff2c21b04c550a739da248a8f1068089ded1"
     },
     ".clang-format": {
-      "sha256": "349d19b2e7432dbe87c2bedd6122dc107adee1857ce9221cdfb1e76076a89e58"
+      "sha256": "968c5e0de98cc9499d354a6411122257053f3eca91c680d4d5263508cb7639ee"
     },
     ".editorconfig": {
-      "sha256": "0b6e8a301f2e4cce86c231357f3b3031a6568534788c3fb0e0d0dc5365ec7e62"
+      "sha256": "2109254024bc9bcb3b3ddaee5866a1afccde16491f34dcf8fe03ed1d20fdfff0"
     }
   },
   "clang_format_version": "21.1.0",
@@ -76,6 +76,114 @@
         },
         ".editorconfig": {
           "sha256": "0b6e8a301f2e4cce86c231357f3b3031a6568534788c3fb0e0d0dc5365ec7e62"
+        }
+      }
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-10-21",
+      "kind": "major",
+      "change": "建立ZL501项目EPR：依据编程开发规范20261016补充四层架构、命名、文件布局、接口和函数文档要求",
+      "affected_rules": [
+        "ALL"
+      ],
+      "profile_reviewed_by": "Codex逐条核对ZL501新增规则与工具配置映射；项目适用命名未由格式工具自动验证",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "acc0fbc1ebff761620894f0cced522e95a954ac983b780cc1b802e3b26f2ad00"
+        },
+        ".clang-format": {
+          "sha256": "2a2d16450b1823292bc02427efc386160f1f1a7b9d91d2f7857203219ecfd847"
+        },
+        ".editorconfig": {
+          "sha256": "11a02534cfd958ceed7971c27fb7def571d039cbadc690ca8ea1a5647a5e27f8"
+        }
+      }
+    },
+    {
+      "version": "2.1.0",
+      "date": "2026-10-23",
+      "kind": "minor",
+      "change": "ZL501适配Nan.Wang分支PIB标记及闭环门禁；保留既有规则编号语义",
+      "affected_rules": [
+        "EPR-DOC-012",
+        "EPR-VER-015"
+      ],
+      "profile_reviewed_by": "Nan.Wang批准ZL501 2.1.0适配稿；AI核对新增PIB正文与工具配置映射，现有格式配置基线未改变",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "089ecea68f3b76ff5430efd5aa16ce00c900d6b63990a7b156b247f6a0b04ad9"
+        },
+        ".clang-format": {
+          "sha256": "ae7974363d22e48abead3da7b6b06ffcca3ec97e5963d092eeaef3b25452dc9f"
+        },
+        ".editorconfig": {
+          "sha256": "6579851208cfe845177a192f7d3d66991c7c1686e31a91218bdd873769833da6"
+        }
+      }
+    },
+    {
+      "version": "3.0.0",
+      "date": "2026-10-28",
+      "kind": "major",
+      "change": "ZL501适配main分支文件名派生保护宏、项目内文件名唯一及源码文件头与注释语言要求",
+      "affected_rules": [
+        "EPR-MOD-004",
+        "EPR-NAM-010",
+        "EPR-DOC-001"
+      ],
+      "profile_reviewed_by": "Nan.Wang批准ZL501 3.0.0适配稿；AI核对正文与既有格式配置映射，EPR-DOC-007固定中文标签仍按强制正文保留",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "e2532b76cb5a076b4d6bd1d674469beb3a549845983b127e807ccc7b15b9dc54"
+        },
+        ".clang-format": {
+          "sha256": "9e21e0ee9a52392985c2537f31b70c24847b3d2b9127a27e8399bfc9a52704ef"
+        },
+        ".editorconfig": {
+          "sha256": "16a266fd57eac43d3a5bfc5de68fa5da29a69fbb03526d20b98143ae4240f699"
+        }
+      }
+    },
+    {
+      "version": "3.0.1",
+      "date": "2026-10-28",
+      "kind": "patch",
+      "change": "移除通用版后修正ZL501维护命令执行目录及工具路径，不改变规则语义",
+      "affected_rules": [
+        "EPR-GOV-012"
+      ],
+      "profile_reviewed_by": "Nan.Wang确认仅保留ZL501项目内容及仓库级维护文件；AI核对命令路径与现有格式配置映射未改变",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "7d53a51e6edec4784f4a930fca56fb5635016c1c2247f783e51d51db495ef30a"
+        },
+        ".clang-format": {
+          "sha256": "c72effe0fb9fe994cb233450ec82c24e71c2dd1298c5007f604062d136fcea13"
+        },
+        ".editorconfig": {
+          "sha256": "49e058af6b5340dfa8a547a642b6b1c9b19a43717216ef1b705a28efaa703959"
+        }
+      }
+    },
+    {
+      "version": "3.0.2",
+      "date": "2026-10-28",
+      "kind": "patch",
+      "change": "ZL501项目文件上移仓库根目录，修正配置、维护命令和文档路径，不改变规则语义",
+      "affected_rules": [
+        "EPR-GOV-012"
+      ],
+      "profile_reviewed_by": "Nan.Wang确认目录上移与README合并；AI核对EPR正文与工具配置映射未改变",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "bf2d00e893b04747945621aa600fff2c21b04c550a739da248a8f1068089ded1"
+        },
+        ".clang-format": {
+          "sha256": "968c5e0de98cc9499d354a6411122257053f3eca91c680d4d5263508cb7639ee"
+        },
+        ".editorconfig": {
+          "sha256": "2109254024bc9bcb3b3ddaee5866a1afccde16491f34dcf8fe03ed1d20fdfff0"
         }
       }
     }

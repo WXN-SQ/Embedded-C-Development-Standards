@@ -211,7 +211,7 @@ Release
 
 ## 8. 提交前只读格式检查
 
-项目已有检查入口：
+项目已有检查入口；以下命令从仓库根目录运行：
 
 ```powershell
 python "1.编程规范/维护工具/coding_rules.py" format-check `
@@ -244,7 +244,7 @@ python --version
 
 ## 9. VS Code 格式检查任务
 
-可以在 `.vscode/tasks.json` 的 `tasks` 数组中添加：
+以 VS Code 打开仓库根目录后，可以在该目录的 `.vscode/tasks.json` 的 `tasks` 数组中添加：
 
 ```json
 {

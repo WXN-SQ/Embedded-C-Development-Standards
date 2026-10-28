@@ -93,7 +93,7 @@ class BundleTests(unittest.TestCase):
         )[0]
         self.assertNotIn("```c", section)
         example_dir = ROOT / "2.开发指导/完整示例"
-        for filename in ["example_module.h", "example_module.c"]:
+        for filename in ["alg_example.h", "alg_example.c"]:
             with self.subTest(filename=filename):
                 path = example_dir / filename
                 self.assertIn(path.name, section)
