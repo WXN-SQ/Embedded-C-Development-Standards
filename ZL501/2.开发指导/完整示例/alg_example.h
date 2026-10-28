@@ -2,14 +2,22 @@
  * @file alg_example.h
  * @brief Declares a platform-independent bounded sample processing interface.
  *
- * This file is a teaching example for ZL501 EPR 2.1.0 and EDI 2.1.0.
+ * Description: Declares the bounded sample processing contract.
+ * Author: Codex (ZL501 adaptation of Nan.Wang example)
+ * Created: 2026-10-21
+ * Last editor: Codex
+ * Last edited: 2026-10-28T16:17:46+08:00
+ * EPR baseline: ZL501 3.0.0.
+ * EDI baseline: ZL501 3.0.0.
+ * Branch: ZL501
+ * Previous commit: f78d11ec4c24450e142d2cb62083f4759e10f8b0
  * It is not a target-DSP validation artifact.
  */
 
 /* Copyright and license strategy: TBD; this teaching example is not a release file. */
 
-#ifndef ZL501_2_DEV_GUIDE_ALG_EXAMPLE_H
-#define ZL501_2_DEV_GUIDE_ALG_EXAMPLE_H
+#ifndef ALG_EXAMPLE_H
+#define ALG_EXAMPLE_H
 
 #include <stddef.h>
 #include <stdint.h>
@@ -27,7 +35,8 @@ typedef enum
 } EXAMPLE_Status;
 
 /**
- * @brief This is a Service Function. Computes and limits the integer average of input samples.
+ * @brief Computes and limits the integer average of input samples.
+ * @category Service Function
  * @details Function: alg_example_processSamples.
  * @param[in] pSamples Points to a readable array containing sample_count signed samples.
  * @param[in] sample_count Number of valid array elements, from 1 to EXAMPLE_MAX_SAMPLE_COUNT.
@@ -42,8 +51,10 @@ typedef enum
  * @pre No module initialization is required.
  * @post On success, pOutputValue is between lower_limit and upper_limit, inclusive.
  * @post On failure, pOutputValue and the input sample array are unchanged.
- * @note 执行上下文：Synchronous platform-independent code; target ISR suitability is unverified.
- * @note 重入与同步：No shared state is used; callers protect concurrently shared objects.
+ * @note 执行上下文：Synchronous platform-independent code;
+ *       target ISR suitability is unverified.
+ * @note 重入与同步：No shared state is used;
+ *       callers protect concurrently shared objects.
  * @note 阻塞与时间：No wait or I/O is used; target execution time has not been measured.
  * @warning This teaching interface has not been validated with the project TI toolchain or DSP.
  * @author Codex (ZL501 adaptation of Nan.Wang example)
@@ -55,4 +66,4 @@ EXAMPLE_Status alg_example_processSamples(const int16_t *pSamples,
     int16_t upper_limit,
     int16_t *pOutputValue);
 
-#endif /* ZL501_2_DEV_GUIDE_ALG_EXAMPLE_H */
+#endif /* ALG_EXAMPLE_H */

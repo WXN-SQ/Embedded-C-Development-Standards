@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "normative_version": "2.1.0",
+  "normative_version": "3.0.0",
   "source": "1.编程规范/嵌入式编程规则手册.md",
   "artifacts": {
     "1.编程规范/嵌入式编程规则手册.md": {
-      "sha256": "089ecea68f3b76ff5430efd5aa16ce00c900d6b63990a7b156b247f6a0b04ad9"
+      "sha256": "e2532b76cb5a076b4d6bd1d674469beb3a549845983b127e807ccc7b15b9dc54"
     },
     ".clang-format": {
-      "sha256": "ae7974363d22e48abead3da7b6b06ffcca3ec97e5963d092eeaef3b25452dc9f"
+      "sha256": "9e21e0ee9a52392985c2537f31b70c24847b3d2b9127a27e8399bfc9a52704ef"
     },
     ".editorconfig": {
-      "sha256": "6579851208cfe845177a192f7d3d66991c7c1686e31a91218bdd873769833da6"
+      "sha256": "16a266fd57eac43d3a5bfc5de68fa5da29a69fbb03526d20b98143ae4240f699"
     }
   },
   "clang_format_version": "21.1.0",
@@ -119,6 +119,29 @@
         },
         ".editorconfig": {
           "sha256": "6579851208cfe845177a192f7d3d66991c7c1686e31a91218bdd873769833da6"
+        }
+      }
+    },
+    {
+      "version": "3.0.0",
+      "date": "2026-10-28",
+      "kind": "major",
+      "change": "ZL501适配main分支文件名派生保护宏、项目内文件名唯一及源码文件头与注释语言要求",
+      "affected_rules": [
+        "EPR-MOD-004",
+        "EPR-NAM-010",
+        "EPR-DOC-001"
+      ],
+      "profile_reviewed_by": "Nan.Wang批准ZL501 3.0.0适配稿；AI核对正文与既有格式配置映射，EPR-DOC-007固定中文标签仍按强制正文保留",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "e2532b76cb5a076b4d6bd1d674469beb3a549845983b127e807ccc7b15b9dc54"
+        },
+        ".clang-format": {
+          "sha256": "9e21e0ee9a52392985c2537f31b70c24847b3d2b9127a27e8399bfc9a52704ef"
+        },
+        ".editorconfig": {
+          "sha256": "16a266fd57eac43d3a5bfc5de68fa5da29a69fbb03526d20b98143ae4240f699"
         }
       }
     }

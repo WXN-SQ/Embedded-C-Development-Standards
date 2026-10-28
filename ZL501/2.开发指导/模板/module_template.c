@@ -2,9 +2,16 @@
  * @file {{FILE_NAME}}
  * @brief Implements {{MODULE_BRIEF_LOWERCASE}}.
  *
- * Template set version: 2.1.0 (ZL501).
+ * Template set version: 3.0.0 (ZL501).
  * EPR baseline: {{EPR_VERSION}}.
  * EDI baseline: {{EDI_VERSION}}.
+ * Description: {{FILE_DESCRIPTION}}
+ * Author: {{AUTHOR}}
+ * Created: {{CREATED_AT}}
+ * Last editor: {{LAST_EDITOR}}
+ * Last edited: {{LAST_EDITED_AT}}
+ * Branch: {{BRANCH}}
+ * Previous commit: {{PREVIOUS_COMMIT}}
  *
  * Replace every {{...}} placeholder before delivery. Delete unused optional
  * content and empty logical sections. Public interface contracts remain in
@@ -34,7 +41,8 @@
 {{PRIVATE_FILE_SCOPE_OBJECTS}}
 
 /**
- * @brief This is an Atomic Function. {{ATOMIC_FUNCTION_BRIEF}}
+ * @brief {{ATOMIC_FUNCTION_BRIEF}}
+ * @category Atomic Function
  * @details Function: {{FILE_STEM}}_{{ATOMIC_FUNCTION_NAME}}.
  * @param[in] {{ATOMIC_INPUT_PARAMETER}} {{ATOMIC_INPUT_DESCRIPTION}}
  * @return {{ATOMIC_RETURN_DESCRIPTION}}
@@ -55,7 +63,8 @@ static {{ATOMIC_RETURN_TYPE}} {{FILE_STEM}}_{{ATOMIC_FUNCTION_NAME}}(
 }
 
 /**
- * @brief This is a Composite Function. {{COMPOSITE_FUNCTION_BRIEF}}
+ * @brief {{COMPOSITE_FUNCTION_BRIEF}}
+ * @category Composite Function
  * @details Function: {{FILE_STEM}}_{{COMPOSITE_FUNCTION_NAME}}.
  * @param[in] {{COMPOSITE_INPUT_PARAMETER}} {{COMPOSITE_INPUT_DESCRIPTION}}
  * @param[out] {{COMPOSITE_OUTPUT_PARAMETER}} {{COMPOSITE_OUTPUT_DESCRIPTION}}

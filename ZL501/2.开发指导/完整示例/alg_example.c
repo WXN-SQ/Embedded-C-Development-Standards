@@ -2,7 +2,15 @@
  * @file alg_example.c
  * @brief Implements platform-independent bounded integer sample processing.
  *
- * This file is a teaching example for ZL501 EPR 2.1.0 and EDI 2.1.0.
+ * Description: Demonstrates bounded sample processing without target validation.
+ * Author: Codex (ZL501 adaptation of Nan.Wang example)
+ * Created: 2026-10-21
+ * Last editor: Codex
+ * Last edited: 2026-10-28T16:17:46+08:00
+ * EPR baseline: ZL501 3.0.0.
+ * EDI baseline: ZL501 3.0.0.
+ * Branch: ZL501
+ * Previous commit: f78d11ec4c24450e142d2cb62083f4759e10f8b0
  * It is not a target-DSP validation artifact.
  */
 
@@ -11,7 +19,8 @@
 #include "alg_example.h"
 
 /**
- * @brief This is an Atomic Function. Adds a validated array of signed samples.
+ * @brief Adds a validated array of signed samples.
+ * @category Atomic Function
  * @details Function: alg_example_sumSamples.
  * @param[in] pSamples Points to a readable array containing count valid elements.
  * @param[in] count Number of elements to add, from 1 to EXAMPLE_MAX_SAMPLE_COUNT.
@@ -33,7 +42,8 @@ static int32_t alg_example_sumSamples(const int16_t *pSamples, size_t count)
 }
 
 /**
- * @brief This is an Atomic Function. Divides a validated sum by a positive sample count.
+ * @brief Divides a validated sum by a positive sample count.
+ * @category Atomic Function
  * @details Function: alg_example_divideSum.
  * @param[in] sum Signed sum to divide.
  * @param[in] divisor Positive divisor representable as int32_t.
@@ -47,7 +57,8 @@ static int16_t alg_example_divideSum(int32_t sum, int32_t divisor)
 }
 
 /**
- * @brief This is an Atomic Function. Limits a signed value to an inclusive range.
+ * @brief Limits a signed value to an inclusive range.
+ * @category Atomic Function
  * @details Function: alg_example_limitValue.
  * @param[in] value Value to limit.
  * @param[in] lower_limit Inclusive lower bound.
@@ -72,7 +83,8 @@ static int16_t alg_example_limitValue(int16_t value, int16_t lower_limit, int16_
 }
 
 /**
- * @brief This is a Composite Function. Computes an average using two Atomic Functions.
+ * @brief Computes an average using two Atomic Functions.
+ * @category Composite Function
  * @details Function: alg_example_computeAverage.
  * @param[in] pSamples Points to a validated readable sample array.
  * @param[in] sample_count Valid sample count, from 1 to EXAMPLE_MAX_SAMPLE_COUNT.
