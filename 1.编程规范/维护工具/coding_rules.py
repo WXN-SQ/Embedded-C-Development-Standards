@@ -329,6 +329,119 @@ def pib_check():
     print(f"PIB显式标记检查完成：{count}个源码标记；未推断空代码是否属于PIB")
 
 
+FUNCTION_FIELDS = ("brief", "details", "param", "return", "author", "date", "par")
+EXTENDED_FIELDS = ("前置条件", "后置条件", "执行上下文", "重入性与同步责任",
+                   "阻塞及时间属性", "警告、风险和使用限制", "分类", "分类理由",
+                   "审核状态", "人工批准记录", "未知项关闭条件")
+FUNCTION_DEFINITION = re.compile(
+    r"(?m)^(?:static\s+)?[A-Za-z_]\w*(?:\s*\*)?\s+([A-Za-z_]\w*)"
+    r"\s*\(([^;{}]*)\)\s*\n\{"
+)
+
+
+def function_doc_errors(source, header, module):
+    """Check structural function documentation; human review owns semantics."""
+    errors = []
+    source_text = source.read_text(encoding="utf-8")
+    header_text = header.read_text(encoding="utf-8") if header.exists() else ""
+    module_text = module.read_text(encoding="utf-8") if module.exists() else ""
+    definitions = list(FUNCTION_DEFINITION.finditer(source_text))
+    if not definitions:
+        return [f"{source}: no recognizable function definitions; review parser scope"]
+    documented = set(re.findall(r"(?m)^###\s+6\.\d+\s+`([A-Za-z_]\w*)`\s*$", module_text))
+    defined = {match.group(1) for match in definitions}
+    for name in sorted(documented - defined):
+        errors.append(f"{module}: {name}: function section has no recognized definition")
+    for definition in definitions:
+        name, raw_params = definition.groups()
+        if not source_text[definition.start():].startswith("static") and not re.search(
+            r"\b" + re.escape(name) + r"\s*\([^;{}]*\)\s*;", header_text
+        ):
+            errors.append(f"{header}: {name}: public declaration missing")
+        prefix = source_text[:definition.start()]
+        preceding = re.search(r"/\*\*((?:(?!/\*\*).)*)\*/\s*$", prefix, re.S)
+        if not preceding:
+            errors.append(f"{source}: {name}: missing immediate Doxygen header")
+            continue
+        body = preceding.group(1)
+        fields = re.findall(r"(?m)^\s*\*\s+@([A-Za-z]+)\b", body)
+        if any(field not in FUNCTION_FIELDS for field in fields):
+            errors.append(f"{source}: {name}: unapproved function field")
+        order = [FUNCTION_FIELDS.index(field) for field in fields if field in FUNCTION_FIELDS]
+        if order != sorted(order):
+            errors.append(f"{source}: {name}: function fields out of order")
+        for required in ("brief", "return", "author", "date", "par"):
+            if fields.count(required) != 1:
+                errors.append(f"{source}: {name}: require one @{required}")
+        if "@par Change Log" not in body or not re.search(
+            r"(?m)^\s*\*\s*-\s+\d{4}-\d{2}-\d{2}\s*\|\s*[^|]+\|\s*\S+", body
+        ):
+            errors.append(f"{source}: {name}: missing dated Change Log entry")
+        if re.search(r"This is a (?:Service|Composite|Atomic) Function\.", body):
+            errors.append(f"{source}: {name}: classification sentence in function header")
+        if re.search(r"No explicit parameters\.|@param\s+None", body):
+            errors.append(f"{source}: {name}: pseudo parameter")
+        expected_params = []
+        if raw_params.strip() != "void" and raw_params.strip():
+            for item in raw_params.split(","):
+                found = re.search(r"([A-Za-z_]\w*)\s*$", item.strip())
+                if not found:
+                    errors.append(f"{source}: {name}: unsupported parameter syntax")
+                else:
+                    expected_params.append(found.group(1))
+        actual_params = re.findall(r"@param\[(?:in|out|in,out)\]\s+([A-Za-z_]\w*)", body)
+        if actual_params != expected_params:
+            errors.append(f"{source}: {name}: @param names/directions differ from signature")
+        if re.search(r"/\*\*(?:(?!\*/).)*\*/\s*(?:extern\s+)?[\w*\s]+\b" +
+                     re.escape(name) + r"\s*\([^;{}]*\)\s*;", header_text, re.S):
+            errors.append(f"{header}: {name}: full function header before declaration")
+        heading = re.search(r"(?m)^###\s+\d+(?:\.\d+)?\s+`" + re.escape(name) +
+                            r"`\s*$", module_text)
+        if not heading:
+            errors.append(f"{module}: {name}: missing function section")
+            continue
+        following = module_text[heading.end():]
+        next_heading = re.search(r"(?m)^###\s+", following)
+        section = following[:next_heading.start()] if next_heading else following
+        for field in EXTENDED_FIELDS:
+            if not re.search(r"(?m)^\|\s*" + re.escape(field) + r"\s*\|", section):
+                errors.append(f"{module}: {name}: missing {field}")
+    if "Public contract: see" in source_text:
+        errors.append(f"{source}: forbidden Public contract reference")
+    return errors
+
+
+def doc_check():
+    sources = sorted((ROOT / "2.开发指导/完整示例").glob("*.c"))
+    if not sources:
+        raise ValueError("缺少可解析完整示例；产品源码需按项目范围另行检查")
+    errors = []
+    for source in sources:
+        errors.extend(function_doc_errors(source, source.with_suffix(".h"), source.with_suffix(".md")))
+    template_dir = ROOT / PARAMETERIZED_TEMPLATE_DIR
+    template_c = (template_dir / "module_template.c").read_text(encoding="utf-8")
+    template_h = (template_dir / "module_template.h").read_text(encoding="utf-8")
+    template_md = (template_dir / "module_template.md").read_text(encoding="utf-8")
+    for forbidden in ("@category", "@retval", "@pre", "@post", "@note", "@warning",
+                      "Public contract: see", "This is a Service Function.",
+                      "This is a Composite Function.", "This is an Atomic Function."):
+        if forbidden in template_c or forbidden in template_h:
+            errors.append(f"{template_dir}: forbidden function-header text: {forbidden}")
+    if template_h.count("/**") != 1:
+        errors.append(f"{template_dir}: public header must have only its file header")
+    if template_c.count("@par Change Log") != 3:
+        errors.append(f"{template_dir}: each of three functions needs a Change Log")
+    for kind in ("SERVICE", "COMPOSITE", "ATOMIC"):
+        heading = "### 6." + {"SERVICE": "1", "COMPOSITE": "2", "ATOMIC": "3"}[kind]
+        section = template_md.split(heading, 1)[-1].split("### 6.", 1)[0]
+        for field in EXTENDED_FIELDS:
+            if not re.search(r"(?m)^\|\s*" + re.escape(field) + r"\s*\|", section):
+                errors.append(f"{template_dir}: {kind}: missing {field}")
+    if errors:
+        raise ValueError("\n".join(errors))
+    print(f"函数文档结构检查完成：{len(sources)}个完整示例模块；语义与产品源码另行审核")
+
+
 def format_check(args):
     _, _, profile, _ = check()
     executable = clang_tool(args.clang_format, profile)
@@ -365,6 +478,7 @@ def main():
     actions = parser.add_subparsers(dest="action", required=True)
     actions.add_parser("check", help="check version, generation output and SHA-256 binding")
     actions.add_parser("pib-check", help="check explicit PIB markers and module registry entries")
+    actions.add_parser("doc-check", help="check complete-example function documentation structure")
     release = actions.add_parser("sync", help="release a new version and regenerate both configurations")
     release.add_argument("--kind", choices=["initial", "major", "minor", "patch"], required=True)
     release.add_argument("--change", required=True)
@@ -382,6 +496,8 @@ def main():
             sync(args)
         elif args.action == "pib-check":
             pib_check()
+        elif args.action == "doc-check":
+            doc_check()
         else:
             format_check(args)
     except (ValueError, OSError, KeyError, subprocess.CalledProcessError) as error:

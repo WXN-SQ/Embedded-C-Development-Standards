@@ -2,7 +2,7 @@
  * @file {{FILE_NAME}}
  * @brief Implements {{MODULE_BRIEF_LOWERCASE}}.
  *
- * Template set version: 3.0.2 (ZL501).
+ * Template set version: 4.0.0 (ZL501).
  * EPR baseline: {{EPR_VERSION}}.
  * EDI baseline: {{EDI_VERSION}}.
  * Description: {{FILE_DESCRIPTION}}
@@ -14,8 +14,8 @@
  * Previous commit: {{PREVIOUS_COMMIT}}
  *
  * Replace every {{...}} placeholder before delivery. Delete unused optional
- * content and empty logical sections. Public interface contracts remain in
- * the matching header and are not duplicated here.
+ * content and empty logical sections. Function headers precede definitions;
+ * extended contracts and classifications belong in the matching module .md.
  */
 
 /* {{COPYRIGHT_AND_LICENSE_NOTICE}} */
@@ -42,12 +42,13 @@
 
 /**
  * @brief {{ATOMIC_FUNCTION_BRIEF}}
- * @category Atomic Function
- * @details Function: {{FILE_STEM}}_{{ATOMIC_FUNCTION_NAME}}.
+ * @details {{ATOMIC_FUNCTION_DETAILS}}
  * @param[in] {{ATOMIC_INPUT_PARAMETER}} {{ATOMIC_INPUT_DESCRIPTION}}
  * @return {{ATOMIC_RETURN_DESCRIPTION}}
  * @author {{AUTHOR}}
  * @date {{CREATED_DATE}}
+ * @par Change Log
+ * - {{CHANGE_DATE}} | {{CHANGE_AUTHOR}} | {{ATOMIC_CHANGE_SUMMARY}}.
  */
 static {{ATOMIC_RETURN_TYPE}} {{FILE_STEM}}_{{ATOMIC_FUNCTION_NAME}}(
     {{ATOMIC_INPUT_TYPE}} {{ATOMIC_INPUT_PARAMETER}})
@@ -64,13 +65,14 @@ static {{ATOMIC_RETURN_TYPE}} {{FILE_STEM}}_{{ATOMIC_FUNCTION_NAME}}(
 
 /**
  * @brief {{COMPOSITE_FUNCTION_BRIEF}}
- * @category Composite Function
- * @details Function: {{FILE_STEM}}_{{COMPOSITE_FUNCTION_NAME}}.
+ * @details {{COMPOSITE_FUNCTION_DETAILS}}
  * @param[in] {{COMPOSITE_INPUT_PARAMETER}} {{COMPOSITE_INPUT_DESCRIPTION}}
  * @param[out] {{COMPOSITE_OUTPUT_PARAMETER}} {{COMPOSITE_OUTPUT_DESCRIPTION}}
  * @return {{COMPOSITE_RETURN_DESCRIPTION}}
  * @author {{AUTHOR}}
  * @date {{CREATED_DATE}}
+ * @par Change Log
+ * - {{CHANGE_DATE}} | {{CHANGE_AUTHOR}} | {{COMPOSITE_CHANGE_SUMMARY}}.
  */
 static {{COMPOSITE_RETURN_TYPE}} {{FILE_STEM}}_{{COMPOSITE_FUNCTION_NAME}}(
     {{COMPOSITE_INPUT_TYPE}} {{COMPOSITE_INPUT_PARAMETER}},
@@ -92,10 +94,16 @@ static {{COMPOSITE_RETURN_TYPE}} {{FILE_STEM}}_{{COMPOSITE_FUNCTION_NAME}}(
     return {{COMPOSITE_RETURN_VALUE}};
 }
 
-/*
- * Public contract: see {{MODULE_NAME}}.h.
- * Function classification: Service Function, pending human review until the
- * matching module knowledge base records an Approved result.
+/**
+ * @brief {{SERVICE_FUNCTION_BRIEF}}
+ * @details {{SERVICE_FUNCTION_DETAILS}}
+ * @param[in] {{INPUT_PARAMETER}} {{INPUT_PARAMETER_DESCRIPTION}}
+ * @param[out] {{OUTPUT_PARAMETER}} {{OUTPUT_PARAMETER_DESCRIPTION}}
+ * @return {{RETURN_DESCRIPTION}}
+ * @author {{AUTHOR}}
+ * @date {{CREATED_DATE}}
+ * @par Change Log
+ * - {{CHANGE_DATE}} | {{CHANGE_AUTHOR}} | {{SERVICE_CHANGE_SUMMARY}}.
  */
 {{RETURN_TYPE}} {{FILE_STEM}}_{{SERVICE_FUNCTION_NAME}}(
     {{INPUT_PARAMETER_TYPE}} {{INPUT_PARAMETER}},

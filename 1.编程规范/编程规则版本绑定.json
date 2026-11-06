@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "normative_version": "3.0.2",
+  "normative_version": "4.0.0",
   "source": "1.编程规范/嵌入式编程规则手册.md",
   "artifacts": {
     "1.编程规范/嵌入式编程规则手册.md": {
-      "sha256": "bf2d00e893b04747945621aa600fff2c21b04c550a739da248a8f1068089ded1"
+      "sha256": "14d6a7af781d1e0ce5ec24af89daf6db6ca457fd54b84e0d46959c76346b2091"
     },
     ".clang-format": {
-      "sha256": "968c5e0de98cc9499d354a6411122257053f3eca91c680d4d5263508cb7639ee"
+      "sha256": "f997e96761613c7b27780224e93ddf69c65e485681f06f661387964c20f8ad39"
     },
     ".editorconfig": {
-      "sha256": "2109254024bc9bcb3b3ddaee5866a1afccde16491f34dcf8fe03ed1d20fdfff0"
+      "sha256": "fb174066fb709e855dc8328f4777d2039488ffdf673cacbf0821340f8d8e98b3"
     }
   },
   "clang_format_version": "21.1.0",
@@ -184,6 +184,33 @@
         },
         ".editorconfig": {
           "sha256": "2109254024bc9bcb3b3ddaee5866a1afccde16491f34dcf8fe03ed1d20fdfff0"
+        }
+      }
+    },
+    {
+      "version": "4.0.0",
+      "date": "2026-11-06",
+      "kind": "major",
+      "change": "ZL501函数头迁至c定义前，扩展契约与分类转至模块md，新增函数级Change Log",
+      "affected_rules": [
+        "EPR-API-011",
+        "EPR-DOC-003",
+        "EPR-DOC-004",
+        "EPR-DOC-005",
+        "EPR-DOC-006",
+        "EPR-DOC-007",
+        "EPR-DOC-011"
+      ],
+      "profile_reviewed_by": "Codex核对EPR正文与工具配置映射：格式选项不变，新增doc-check覆盖教学示例与模板结构；语义和目标环境仍待审核",
+      "artifacts": {
+        "1.编程规范/嵌入式编程规则手册.md": {
+          "sha256": "14d6a7af781d1e0ce5ec24af89daf6db6ca457fd54b84e0d46959c76346b2091"
+        },
+        ".clang-format": {
+          "sha256": "f997e96761613c7b27780224e93ddf69c65e485681f06f661387964c20f8ad39"
+        },
+        ".editorconfig": {
+          "sha256": "fb174066fb709e855dc8328f4777d2039488ffdf673cacbf0821340f8d8e98b3"
         }
       }
     }

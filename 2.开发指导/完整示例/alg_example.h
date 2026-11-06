@@ -6,11 +6,11 @@
  * Author: Codex (ZL501 adaptation of Nan.Wang example)
  * Created: 2026-10-21
  * Last editor: Codex
- * Last edited: 2026-10-28T16:35:25+08:00
- * EPR baseline: ZL501 3.0.2.
- * EDI baseline: ZL501 3.0.2.
+ * Last edited: 2026-11-06T11:54:28+08:00
+ * EPR baseline: ZL501 4.0.0.
+ * EDI baseline: ZL501 4.0.0.
  * Branch: ZL501
- * Previous commit: e41c79c31ef50e72e2a2be48a56cfb98b249566e
+ * Previous commit: 3d9741a765ac43090dabe7c1b05972d96dcbe16f
  * It is not a target-DSP validation artifact.
  */
 
@@ -34,32 +34,6 @@ typedef enum
     EXAMPLE_STATUS_INVALID_LIMITS /**< The lower limit was greater than the upper limit. */
 } EXAMPLE_Status;
 
-/**
- * @brief Computes and limits the integer average of input samples.
- * @category Service Function
- * @details Function: alg_example_processSamples.
- * @param[in] pSamples Points to a readable array containing sample_count signed samples.
- * @param[in] sample_count Number of valid array elements, from 1 to EXAMPLE_MAX_SAMPLE_COUNT.
- * @param[in] lower_limit Lowest value that may be written to pOutputValue.
- * @param[in] upper_limit Highest value that may be written to pOutputValue.
- * @param[out] pOutputValue Points to a writable result object and must not alias pSamples.
- * @return Status describing whether processing completed.
- * @retval EXAMPLE_STATUS_OK pOutputValue contains the limited integer average.
- * @retval EXAMPLE_STATUS_NULL_POINTER A required pointer was null; pOutputValue is unchanged.
- * @retval EXAMPLE_STATUS_INVALID_COUNT sample_count was invalid; pOutputValue is unchanged.
- * @retval EXAMPLE_STATUS_INVALID_LIMITS The limits were invalid; pOutputValue is unchanged.
- * @pre No module initialization is required.
- * @post On success, pOutputValue is between lower_limit and upper_limit, inclusive.
- * @post On failure, pOutputValue and the input sample array are unchanged.
- * @note 执行上下文：Synchronous platform-independent code;
- *       target ISR suitability is unverified.
- * @note 重入与同步：No shared state is used;
- *       callers protect concurrently shared objects.
- * @note 阻塞与时间：No wait or I/O is used; target execution time has not been measured.
- * @warning This teaching interface has not been validated with the project TI toolchain or DSP.
- * @author Codex (ZL501 adaptation of Nan.Wang example)
- * @date 2026-10-21
- */
 EXAMPLE_Status alg_example_processSamples(const int16_t *pSamples,
     size_t sample_count,
     int16_t lower_limit,

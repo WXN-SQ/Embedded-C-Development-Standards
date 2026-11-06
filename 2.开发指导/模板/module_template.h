@@ -2,7 +2,7 @@
  * @file {{FILE_NAME}}
  * @brief {{MODULE_BRIEF}}
  *
- * Template set version: 3.0.2 (ZL501).
+ * Template set version: 4.0.0 (ZL501).
  * EPR baseline: {{EPR_VERSION}}.
  * EDI baseline: {{EDI_VERSION}}.
  * Description: {{FILE_DESCRIPTION}}
@@ -40,24 +40,6 @@
 
 /* Public Function Declarations */
 
-/**
- * @brief {{SERVICE_FUNCTION_BRIEF}}
- * @category Service Function
- * @details Function: {{FILE_STEM}}_{{SERVICE_FUNCTION_NAME}}.
- * @param[in] {{INPUT_PARAMETER}} {{INPUT_PARAMETER_DESCRIPTION}}
- * @param[out] {{OUTPUT_PARAMETER}} {{OUTPUT_PARAMETER_DESCRIPTION}}
- * @return {{RETURN_DESCRIPTION}}
- * @retval {{SUCCESS_VALUE}} {{SUCCESS_DESCRIPTION}}
- * @retval {{FAILURE_VALUE}} {{FAILURE_DESCRIPTION}}
- * @pre {{PRECONDITION}}
- * @post {{POSTCONDITION}}
- * @note 执行上下文：{{EXECUTION_CONTEXT}}
- * @note 重入与同步：{{REENTRANCY_AND_SYNCHRONIZATION}}
- * @note 阻塞与时间：{{BLOCKING_AND_TIMING}}
- * @warning {{WARNING_DESCRIPTION}}
- * @author {{AUTHOR}}
- * @date {{CREATED_DATE}}
- */
 {{RETURN_TYPE}} {{FILE_STEM}}_{{SERVICE_FUNCTION_NAME}}(
     {{INPUT_PARAMETER_TYPE}} {{INPUT_PARAMETER}},
     {{OUTPUT_PARAMETER_TYPE}} *{{OUTPUT_PARAMETER}});

@@ -4,7 +4,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 模板集版本 | 3.0.2（ZL501） |
+| 模板集版本 | 4.0.0（ZL501） |
 | EPR基线 | {{EPR_VERSION}} |
 | EDI基线 | {{EDI_VERSION}} |
 | 模块名称 | {{MODULE_NAME}} |
@@ -25,7 +25,7 @@
 
 `{{MODULE_NAME}}` 与 `{{FILE_STEM}}` 均应取项目已登记的文件名词干，例如 `alg_test`；函数操作名不得再含下划线，保证函数名恰有两个下划线。指针名使用 `pXxx`，全局指针使用已裁决的 `pGXxx`。函数头的创建人和日期须从真实记录核验。
 
-头文件保护宏仅由包含扩展名的完整文件名派生，实例化前须核对项目内文件名唯一。C/H 文件头的描述、作者、创建及最近编辑事实、EPR/EDI 基线、分支和上一已完成提交须逐项核实；函数 `@brief` 仅写职责，`@category` 使用固定分类值。模板中的这些内容均为待填写或待审核项，不预设合规结论。
+头文件保护宏仅由包含扩展名的完整文件名派生，实例化前须核对项目内文件名唯一。C/H 文件头的描述、作者、创建及最近编辑事实、EPR/EDI 基线、分支和上一已完成提交须逐项核实；函数 `@brief` 仅写职责，分类及扩展契约只在本模块资料库维护。函数头的 `@par Change Log` 必须记录真实变更，未知历史标记 `TBD` 并给出关闭条件。模板中的这些内容均为待填写或待审核项，不预设合规结论。
 
 ## 2. 模块职责与边界
 
@@ -72,6 +72,22 @@
 | 分类依据 | {{SERVICE_CLASSIFICATION_RATIONALE}} |
 | 审核状态 | Pending Review |
 
+#### 扩展契约与分类审核
+
+| 字段 | 内容 |
+| --- | --- |
+| 前置条件 | {{SERVICE_PRECONDITIONS}} |
+| 后置条件 | {{SERVICE_POSTCONDITIONS}} |
+| 执行上下文 | {{SERVICE_EXECUTION_CONTEXT}} |
+| 重入性与同步责任 | {{SERVICE_REENTRANCY_AND_SYNCHRONIZATION}} |
+| 阻塞及时间属性 | {{SERVICE_BLOCKING_AND_TIMING}} |
+| 警告、风险和使用限制 | {{SERVICE_WARNINGS_AND_LIMITS}} |
+| 分类 | Service Function |
+| 分类理由 | {{SERVICE_CLASSIFICATION_RATIONALE}} |
+| 审核状态 | Pending Review |
+| 人工批准记录 | {{SERVICE_APPROVAL_OR_TBD}} |
+| 未知项关闭条件 | {{SERVICE_TBD_CLOSURE_OR_NONE}} |
+
 #### 输入、输出与返回
 
 | 名称 | 类别 | 类型 | 方向 | 含义与单位 | 关键条件 |
@@ -79,6 +95,13 @@
 | `{{INPUT_PARAMETER}}` | Parameter | `{{INPUT_PARAMETER_TYPE}}` | Input | {{INPUT_PARAMETER_DESCRIPTION}} | {{INPUT_PARAMETER_CONDITIONS}} |
 | `{{OUTPUT_PARAMETER}}` | Parameter | `{{OUTPUT_PARAMETER_TYPE}} *` | Output | {{OUTPUT_PARAMETER_DESCRIPTION}} | {{OUTPUT_PARAMETER_CONDITIONS}} |
 | Return | Return | `{{RETURN_TYPE}}` | Return | {{RETURN_DESCRIPTION}} | {{RETURN_CONDITIONS}} |
+
+#### 返回状态与退出路径
+
+| 状态或路径 | 输出、对象、资源及副作用后置状态 |
+| --- | --- |
+| {{SERVICE_SUCCESS_STATE}} | {{SERVICE_SUCCESS_POSTSTATE}} |
+| {{SERVICE_FAILURE_STATE_OR_NONE}} | {{SERVICE_FAILURE_POSTSTATE_OR_NONE}} |
 
 #### 局部变量
 
@@ -96,6 +119,22 @@
 | 可见性 | `static` |
 | 分类依据 | {{COMPOSITE_CLASSIFICATION_RATIONALE}} |
 | 审核状态 | Pending Review |
+
+#### 扩展契约与分类审核
+
+| 字段 | 内容 |
+| --- | --- |
+| 前置条件 | {{COMPOSITE_PRECONDITIONS}} |
+| 后置条件 | {{COMPOSITE_POSTCONDITIONS}} |
+| 执行上下文 | {{COMPOSITE_EXECUTION_CONTEXT}} |
+| 重入性与同步责任 | {{COMPOSITE_REENTRANCY_AND_SYNCHRONIZATION}} |
+| 阻塞及时间属性 | {{COMPOSITE_BLOCKING_AND_TIMING}} |
+| 警告、风险和使用限制 | {{COMPOSITE_WARNINGS_AND_LIMITS}} |
+| 分类 | Composite Function |
+| 分类理由 | {{COMPOSITE_CLASSIFICATION_RATIONALE}} |
+| 审核状态 | Pending Review |
+| 人工批准记录 | {{COMPOSITE_APPROVAL_OR_TBD}} |
+| 未知项关闭条件 | {{COMPOSITE_TBD_CLOSURE_OR_NONE}} |
 
 #### 输入、输出与返回
 
@@ -121,6 +160,22 @@
 | 可见性 | `static` |
 | 分类依据 | {{ATOMIC_CLASSIFICATION_RATIONALE}} |
 | 审核状态 | Pending Review |
+
+#### 扩展契约与分类审核
+
+| 字段 | 内容 |
+| --- | --- |
+| 前置条件 | {{ATOMIC_PRECONDITIONS}} |
+| 后置条件 | {{ATOMIC_POSTCONDITIONS}} |
+| 执行上下文 | {{ATOMIC_EXECUTION_CONTEXT}} |
+| 重入性与同步责任 | {{ATOMIC_REENTRANCY_AND_SYNCHRONIZATION}} |
+| 阻塞及时间属性 | {{ATOMIC_BLOCKING_AND_TIMING}} |
+| 警告、风险和使用限制 | {{ATOMIC_WARNINGS_AND_LIMITS}} |
+| 分类 | Atomic Function |
+| 分类理由 | {{ATOMIC_CLASSIFICATION_RATIONALE}} |
+| 审核状态 | Pending Review |
+| 人工批准记录 | {{ATOMIC_APPROVAL_OR_TBD}} |
+| 未知项关闭条件 | {{ATOMIC_TBD_CLOSURE_OR_NONE}} |
 
 #### 输入、输出与返回
 
